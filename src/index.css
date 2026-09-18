@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0A0A0A;
+  --color-charcoal: #161616;
+  --color-charcoal-light: #1E1E1E;
+  --color-border: #262626;
+  --color-border-light: #333333;
+  --color-volt: #CCFF00;
+  --color-volt-dim: #99CC00;
+  --color-volt-glow: rgba(204, 255, 0, 0.15);
+  --color-volt-glow-strong: rgba(204, 255, 0, 0.3);
+  --color-muted: #A3A3A3;
+  --color-muted-dark: #737373;
+  --color-danger: #FF4444;
+  --color-danger-glow: rgba(255, 68, 68, 0.2);
+  --color-success: #00D68F;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-gradient-volt {
+    background: linear-gradient(135deg, #CCFF00, #99CC00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glow-volt {
+    box-shadow: 0 0 20px rgba(204, 255, 0, 0.3), 0 0 60px rgba(204, 255, 0, 0.1);
+  }
+  
+  .glow-volt-subtle {
+    box-shadow: 0 0 15px rgba(204, 255, 0, 0.15), 0 0 40px rgba(204, 255, 0, 0.05);
+  }
+  
+  .glow-danger {
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.3), 0 0 60px rgba(255, 68, 68, 0.1);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
