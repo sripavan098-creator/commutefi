@@ -15,6 +15,7 @@
   --color-danger: #FF4444;
   --color-danger-glow: rgba(255, 68, 68, 0.2);
   --color-success: #00D68F;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
