@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { User, Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Award, MapPin, CreditCard } from 'lucide-react';
+import { Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Award, MapPin, CreditCard } from 'lucide-react';
 import { useUserStore } from '../store/useUserStore';
 
 export function ProfileScreen() {

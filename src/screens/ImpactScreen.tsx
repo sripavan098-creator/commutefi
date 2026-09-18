@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Leaf, TrendingUp, Zap, MapPin, Calendar, Target, ArrowUpRight } from 'lucide-react';
+import { Leaf, ArrowUpRight, Target, Calendar } from 'lucide-react';
 import { useUserStore } from '../store/useUserStore';
 
 export function ImpactScreen() {
-  const { co2Saved, greenTrips, ecoCredits, streak, transactions } = useUserStore();
+  const { co2Saved, greenTrips, ecoCredits, streak } = useUserStore();
 
   const weeklyData = [
     { day: 'Mon', value: 65 },
@@ -27,7 +27,7 @@ export function ImpactScreen() {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="mb-5"
       >
         <h1 className="text-2xl font-bold text-white">Your Impact</h1>
         <p className="text-sm text-muted mt-1">Every commute counts towards a greener planet</p>
@@ -38,7 +38,7 @@ export function ImpactScreen() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/30 to-charcoal border border-emerald-500/20 p-6 mb-5"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/30 to-charcoal border border-emerald-500/20 p-5 mb-5"
       >
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl" />
         <div className="relative z-10 flex items-center gap-4">
@@ -50,7 +50,7 @@ export function ImpactScreen() {
             <p className="text-sm text-muted">Total CO₂ saved</p>
           </div>
         </div>
-        <div className="relative z-10 mt-4 flex items-center gap-2">
+        <div className="relative z-10 mt-3 flex items-center gap-2">
           <div className="flex items-center gap-1 bg-emerald-500/10 rounded-full px-2 py-0.5">
             <ArrowUpRight size={12} className="text-emerald-400" />
             <span className="text-[10px] font-semibold text-emerald-400">18% vs last month</span>
@@ -124,10 +124,15 @@ export function ImpactScreen() {
             <div className="flex-1">
               <p className="text-xs font-semibold text-white">200 kg CO₂ Challenge</p>
               <div className="h-1.5 bg-obsidian rounded-full mt-1.5 overflow-hidden">
-                <div className="h-full bg-volt rounded-full" style={{ width: '93%' }} />
+                <motion.div
+                  className="h-full bg-volt rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${Math.min((co2Saved / 200) * 100, 100)}%` }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                />
               </div>
             </div>
-            <span className="text-xs font-bold text-volt">93%</span>
+            <span className="text-xs font-bold text-volt">{Math.min((co2Saved / 200 * 100), 100).toFixed(0)}%</span>
           </div>
           <div className="bg-charcoal border border-border rounded-xl p-3 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-400/10 flex items-center justify-center">
@@ -136,10 +141,15 @@ export function ImpactScreen() {
             <div className="flex-1">
               <p className="text-xs font-semibold text-white">30-Day Green Streak</p>
               <div className="h-1.5 bg-obsidian rounded-full mt-1.5 overflow-hidden">
-                <div className="h-full bg-blue-400 rounded-full" style={{ width: '23%' }} />
+                <motion.div
+                  className="h-full bg-blue-400 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${(streak / 30) * 100}%` }}
+                  transition={{ duration: 1, delay: 0.6 }}
+                />
               </div>
             </div>
-            <span className="text-xs font-bold text-blue-400">7/30</span>
+            <span className="text-xs font-bold text-blue-400">{streak}/30</span>
           </div>
         </div>
       </motion.div>
